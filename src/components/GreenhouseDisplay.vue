@@ -5,8 +5,7 @@
         <Greenhouse
             :greenhouse="greenhouse"
             class="mb-3"
-            @increase="increase(idx, greenhouse.name)"
-            @decrease="decrease(idx, greenhouse.name)"
+            @changeTemp="(tmp) => change(idx, greenhouse.name, tmp)"
         />
       </div>
     </div>
@@ -59,16 +58,11 @@ export default {
 
       //this.greenhouses = data.greenhouses;
     },
-    increase(idx, name) {
+    change(idx, name, tmp) {
       // TODO: MAKE API CALLS
-      this.greenhouses[idx].temperature++;
-      console.log(`${name} temperature increased. New temperature: ${this.greenhouses[idx].temperature}`);
+      this.greenhouses[idx].temperature = tmp;
+      console.log(`${name} temperature changed. New temperature: ${this.greenhouses[idx].temperature}`);
     },
-    decrease(idx, name) {
-      // TODO: MAKE API CALLS
-      this.greenhouses[idx].temperature--;
-      console.log(`${name} temperature decreased. New temperature: ${this.greenhouses[idx].temperature}`);
-    }
   },
 }
 </script>
