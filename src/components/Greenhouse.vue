@@ -2,6 +2,7 @@
   <div class="greenhouse-card">
     <h1>{{ greenhouse.name }}</h1>
     <h3>Temperature: {{ greenhouse.temperature }} &deg;</h3>
+    <h3>Wish Temperature: {{ greenhouse.temperature_wish }} &deg;</h3>
     <form @submit.prevent="changeTemp">
       <input type="text" placeholder="New temperature" aria-label="New Temperature" v-model="newTemp"/>
       <button type="submit">Change Temperature</button>
