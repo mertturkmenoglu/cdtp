@@ -23,9 +23,17 @@ export default {
   components: {Greenhouse},
   data: () => ({
     greenhouses: [],
+    temperatureListener: {},
+    UPDATE_GREENHOUSE_TIMEOUT: 5000
   }),
   mounted() {
     this.fetchGreenhouses();
+    this.temperatureListener = setInterval(() => {
+      this.fetchGreenhouses()
+    }, this.UPDATE_GREENHOUSE_TIMEOUT);
+  },
+  beforeDestroy() {
+    clearInterval(this.temperatureListener)
   },
   methods: {
     async fetchGreenhouses() {
@@ -43,7 +51,7 @@ export default {
       const requestOptions = {
         method: 'PUT',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({'temperature': tmp })
+        body: JSON.stringify({'temperature_wish': tmp })
       }
 
       const response = await fetch(URL, requestOptions)
